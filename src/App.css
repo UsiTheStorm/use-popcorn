@@ -460,7 +460,7 @@ EMPTY STAR
     grid-template-columns: 1fr;
     height: auto;
     padding: 1rem 1.6rem;
-    border-radius: 0;
+    border-radius: 0 0 1rem 1rem;
     gap: 1rem;
   }
 

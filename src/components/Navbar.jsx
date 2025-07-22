@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
+import SearchBar from './SearchBar';
+
 function Navbar({ movies }) {
-  const [query, setQuery] = useState('');
+  //   const [query, setQuery] = useState('');
 
   return (
     <nav className="nav-bar">
@@ -9,13 +11,9 @@ function Navbar({ movies }) {
         <span role="img">🍿</span>
         <h1>usePopcorn</h1>
       </div>
-      <input
-        className="search"
-        type="text"
-        placeholder="Search movies..."
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+
+      <SearchBar />
+
       <p className="num-results">
         Found <strong>{movies.length}</strong> results
       </p>

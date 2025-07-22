@@ -451,13 +451,15 @@ EMPTY STAR
 
 @media (max-width: 768px) {
   body {
-    padding: 1.6rem;
+    padding: 0;
   }
 
   .nav-bar {
+    top: 0;
     grid-template-columns: 1fr;
     height: auto;
     padding: 1rem 1.6rem;
+    border-radius: 0;
     gap: 1rem;
   }
 

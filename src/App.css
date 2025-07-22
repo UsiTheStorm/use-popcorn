@@ -28,6 +28,11 @@ body {
   color: var(--color-text);
   background-color: var(--color-background-900);
   padding: 2.4rem;
+
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-y: scroll;
 }
 
 /* ******* */
@@ -40,23 +45,31 @@ body {
   padding: 0 3.2rem;
   background-color: var(--color-primary);
   border-radius: 0.9rem;
+  /* flex-shrink: 0; */
 }
 
 .main {
   margin-top: 2.4rem;
-  height: calc(100vh - 7.2rem - 3 * 2.4rem);
+  /* height: calc(100vh - 7.2rem - 3 * 2.4rem); */
   display: flex;
   gap: 2.4rem;
   justify-content: center;
+  /* overflow-y: auto; */
+  flex: 1;
+  align-items: stretch;
 }
 
 .box {
-  width: 42rem;
-  max-width: 42rem;
+  /* width: 50rem; */
+  width: 100%;
+  max-width: 50rem;
   background-color: var(--color-background-500);
   border-radius: 0.9rem;
-  overflow: scroll;
+  /* overflow: scroll; */
   position: relative;
+
+  display: flex;
+  flex-direction: column;
 }
 
 .loader {
@@ -97,7 +110,9 @@ body {
   padding: 1.1rem 1.6rem;
   font-size: 1.8rem;
   border-radius: 0.7rem;
-  width: 40rem;
+  /* width: 40rem; */
+  max-width: 40rem;
+  width: 100%;
   transition: all 0.3s;
   color: var(--color-text);
 
@@ -139,7 +154,15 @@ body {
 .list {
   list-style: none;
   padding: 0.8rem 0;
-  overflow: scroll;
+
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  /* overflow-y: auto;
+  overflow-x: hidden; */
 }
 
 .list-watched {
@@ -154,6 +177,7 @@ body {
   column-gap: 2.4rem;
   font-size: 1.6rem;
   align-items: center;
+  /* flex-wrap: wrap; */
 
   padding: 1.6rem 3.2rem;
   border-bottom: 1px solid var(--color-background-100);
@@ -175,11 +199,17 @@ body {
 
 .list h3 {
   font-size: 1.8rem;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .list div {
   display: flex;
   align-items: center;
+  /* justify-content: space-between; */
+  justify-content: start;
   gap: 2.4rem;
 }
 
@@ -227,7 +257,8 @@ body {
 .summary div {
   display: flex;
   align-items: center;
-  gap: 2.4rem;
+  justify-content: space-between;
+  gap: 1.5rem;
   font-size: 1.6rem;
   font-weight: 600;
 }
@@ -380,3 +411,131 @@ EMPTY STAR
 </svg>
 
 */
+@media (max-width: 1024px) {
+  body {
+    padding: 2rem;
+  }
+
+  .nav-bar {
+    padding: 0 2rem;
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+
+  .search {
+    max-width: 35rem;
+  }
+
+  .main {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .box {
+    max-width: 50rem;
+    width: 100%;
+  }
+
+  /* .list div {
+    justify-content: start;
+  } */
+
+  .list li {
+    column-gap: 2rem;
+    padding: 1.4rem 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 1.6rem;
+  }
+
+  .nav-bar {
+    grid-template-columns: 1fr;
+    height: auto;
+    padding: 1rem 1.6rem;
+    gap: 1rem;
+  }
+
+  .logo {
+    justify-self: center;
+  }
+
+  .search {
+    width: 100%;
+    max-width: none;
+    font-size: 1.4rem;
+    padding: 0.8rem 1.2rem;
+  }
+
+  .num-results {
+    justify-self: center;
+    font-size: 1.4rem;
+  }
+
+  .main {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+    margin-top: 1.6rem;
+  }
+
+  .box {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .list li {
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* justify-content: space-between; */
+    /* align-items: center; */
+    /* flex-wrap: wrap; */
+    text-align: left;
+    padding: 1.2rem 1.6rem;
+    /* gap: 2.5rem; */
+  }
+
+  .list img {
+    width: 6rem;
+    height: auto;
+    /* margin-right: 1.2rem; */
+  }
+
+  .list h3 {
+    font-size: 1.6rem;
+    margin-left: 2.2rem;
+    /* flex-grow: 1;
+    text-align: left; */
+  }
+
+  .list div {
+    /* flex-wrap: wrap; */
+    justify-content: end;
+    gap: 0.8rem;
+  }
+
+  .list p {
+    font-size: 1.4rem;
+  }
+
+  .btn-delete {
+    position: static;
+    margin-top: 0.8rem;
+    width: auto;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .summary {
+    padding: 1.6rem 2rem;
+  }
+
+  .summary div {
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 0.8rem;
+  }
+}

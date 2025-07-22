@@ -2,7 +2,7 @@ import React from 'react';
 
 function MovieItem({ movie }) {
   return (
-    <li key={movie.imdbID}>
+    <li>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3 title={movie.Title}>{movie.Title}</h3>
       <div>

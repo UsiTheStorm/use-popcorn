@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-function WatchedList({ watched, average }) {
-  const [isOpen2, setIsOpen2] = useState(true);
+function WatchedBox({ watched, average }) {
+  const [isOpen, setIsOpen] = useState(true);
 
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
   const avgUserRating = average(watched.map((movie) => movie.userRating));
@@ -9,10 +9,10 @@ function WatchedList({ watched, average }) {
 
   return (
     <div className="box">
-      <button className="btn-toggle" onClick={() => setIsOpen2((open) => !open)}>
-        {isOpen2 ? '–' : '+'}
+      <button className="btn-toggle" onClick={() => setIsOpen((open) => !open)}>
+        {isOpen ? '–' : '+'}
       </button>
-      {isOpen2 && (
+      {isOpen && (
         <>
           <div className="summary">
             <h2>Movies you watched</h2>
@@ -64,4 +64,4 @@ function WatchedList({ watched, average }) {
   );
 }
 
-export default WatchedList;
+export default WatchedBox;

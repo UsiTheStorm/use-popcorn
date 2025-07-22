@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function MovieList({ movies }) {
+function MovieBox({ movies }) {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -28,4 +28,4 @@ function MovieList({ movies }) {
   );
 }
 
-export default MovieList;
+export default MovieBox;

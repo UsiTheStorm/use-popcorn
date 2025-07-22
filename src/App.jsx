@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import './App.css';
+
 const tempMovieData = [
   {
     imdbID: 'tt1375666',

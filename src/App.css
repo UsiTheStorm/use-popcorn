@@ -38,6 +38,9 @@ body {
 /* ******* */
 
 .nav-bar {
+  position: sticky;
+  top: 10px;
+  z-index: 1000;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   align-items: center;

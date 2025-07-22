@@ -2,21 +2,31 @@ import { useState } from 'react';
 
 import SearchBar from './SearchBar';
 
+function Logo() {
+  return (
+    <div className="logo">
+      <span role="img">🍿</span>
+      <h1>usePopcorn</h1>
+    </div>
+  );
+}
+
+function NumResults({ movies }) {
+  return (
+    <p className="num-results">
+      Found <strong>{movies.length}</strong> results
+    </p>
+  );
+}
+
 function Navbar({ movies }) {
   //   const [query, setQuery] = useState('');
 
   return (
     <nav className="nav-bar">
-      <div className="logo">
-        <span role="img">🍿</span>
-        <h1>usePopcorn</h1>
-      </div>
-
+      <Logo />
       <SearchBar />
-
-      <p className="num-results">
-        Found <strong>{movies.length}</strong> results
-      </p>
+      <NumResults movies={movies} />
     </nav>
   );
 }

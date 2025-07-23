@@ -10,11 +10,11 @@ const containerStyle = {
 const starContainerStyle = {
   display: 'flex',
   alignItems: 'center',
-  gap: '4px',
+  // gap: '4px',
 };
 
 const textStyle = {
-  lineHight: 1,
+  lineHeight: 1,
   margin: 0,
 };
 
@@ -23,6 +23,7 @@ const starStyle = {
   width: '24px',
   height: '24px',
   cursor: 'pointer',
+  padding: '0 2px',
 };
 
 // Svg stars
@@ -43,14 +44,14 @@ const emptyStar = (
   </svg>
 );
 
-function Star({ onRate, isFull }) {
+function Star({ onRate, isFull, onHoverIn, onHoverOut }) {
   return (
     <span
       style={starStyle}
       role="button"
       onClick={onRate}
-      onMouseEnter={() => console.log('Enter')}
-      onMouseLeave={() => console.log('Leave')}
+      onMouseEnter={onHoverIn}
+      onMouseLeave={onHoverOut}
     >
       {isFull ? fullStar : emptyStar}
     </span>
@@ -65,10 +66,6 @@ function StarRating({ maxRating = 5 }) {
     setRating(newRating);
   }
 
-  // function handleTempRate(newRating) {
-  //   setTempRating(newRating);
-  // }
-
   // Ensure maxRating is a positive integer
   const validMaxRating = Number.isInteger(maxRating) && maxRating > 0 ? maxRating : 5;
 
@@ -79,12 +76,13 @@ function StarRating({ maxRating = 5 }) {
           <Star
             key={i}
             onRate={() => handleRate(i + 1)}
-            // onTempRate={() => handleTempRate(i + 1)}
-            isFull={rating > i}
+            onHoverIn={() => setTempRating(i + 1)}
+            onHoverOut={() => setTempRating(0)}
+            isFull={tempRating ? tempRating > i : rating > i}
           />
         ))}
       </div>
-      <p style={textStyle}>{rating || ''}</p>
+      <p style={textStyle}>{tempRating || rating || ''}</p>
     </div>
   );
 }

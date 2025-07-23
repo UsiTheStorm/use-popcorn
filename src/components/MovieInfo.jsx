@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MovieInfo() {
+function MovieInfo({ movie }) {
   return (
     <>
       <p>

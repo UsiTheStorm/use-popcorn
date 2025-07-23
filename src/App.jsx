@@ -9,6 +9,7 @@ import WatchedBox from './components/WatchedBox';
 import MovieList from './components/MovieList';
 import WatchedSummary from './components/WatchedSummary';
 import MovieItem from './components/MovieItem';
+import MovieInfo from './components/MovieInfo';
 
 const tempMovieData = [
   {
@@ -148,7 +149,8 @@ export default function App() {
             <ul className="list">
               {watched.map((movie) => (
                 <MovieItem movie={movie}>
-                  <p>
+                  <MovieInfo movie={movie} />
+                  {/* <p>
                     <span>⭐️</span>
                     <span>{movie.imdbRating}</span>
                   </p>
@@ -159,7 +161,7 @@ export default function App() {
                   <p>
                     <span>⏳</span>
                     <span>{movie.runtime} min</span>
-                  </p>
+                  </p> */}
                 </MovieItem>
               ))}
             </ul>

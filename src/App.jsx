@@ -135,7 +135,6 @@ export default function App() {
       <Navbar movies={movies} />
 
       <main className="main">
-        {/* <MovieBox movies={movies} /> */}
         <MovieBox>
           <MovieList movies={movies} />
         </MovieBox>

@@ -5,6 +5,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import MovieBox from './components/MovieBox';
 import WatchedBox from './components/WatchedBox';
+import MovieList from './components/MovieList';
 
 const tempMovieData = [
   {
@@ -134,7 +135,10 @@ export default function App() {
       <Navbar movies={movies} />
 
       <main className="main">
-        <MovieBox movies={movies} />
+        {/* <MovieBox movies={movies} /> */}
+        <MovieBox>
+          <MovieList movies={movies} />
+        </MovieBox>
         <WatchedBox watched={watched} average={average} />
       </main>
     </>

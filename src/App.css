@@ -432,6 +432,7 @@ EMPTY STAR
   .main {
     flex-direction: column;
     align-items: center;
+    gap: 4.2rem;
     /* gap: 2rem; */
   }
 
@@ -483,7 +484,7 @@ EMPTY STAR
   .main {
     flex-direction: column;
     align-items: center;
-    gap: 4.2rem;
+    /* gap: 4.2rem; */
     margin-top: 1.6rem;
   }
 

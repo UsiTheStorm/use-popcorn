@@ -3,9 +3,12 @@ import { useState } from 'react';
 import './App.css';
 
 import Navbar from './components/Navbar';
+import Box from './components/Box';
 import MovieBox from './components/MovieBox';
 import WatchedBox from './components/WatchedBox';
 import MovieList from './components/MovieList';
+import WatchedSummary from './components/WatchedSummary';
+import MovieItem from './components/MovieItem';
 
 const tempMovieData = [
   {
@@ -135,10 +138,34 @@ export default function App() {
       <Navbar movies={movies} />
 
       <main className="main">
-        <MovieBox>
+        {/* <MovieBox movies={movies} /> */}
+        <Box>
           <MovieList movies={movies} />
-        </MovieBox>
-        <WatchedBox watched={watched} average={average} />
+        </Box>
+        <Box>
+          <>
+            <WatchedSummary watched={watched} average={average} />
+            <ul className="list">
+              {watched.map((movie) => (
+                <MovieItem movie={movie}>
+                  <p>
+                    <span>⭐️</span>
+                    <span>{movie.imdbRating}</span>
+                  </p>
+                  <p>
+                    <span>🌟</span>
+                    <span>{movie.userRating}</span>
+                  </p>
+                  <p>
+                    <span>⏳</span>
+                    <span>{movie.runtime} min</span>
+                  </p>
+                </MovieItem>
+              ))}
+            </ul>
+          </>
+        </Box>
+        {/* <WatchedBox watched={watched} average={average} /> */}
       </main>
     </>
   );

@@ -11,6 +11,8 @@ import WatchedSummary from './components/WatchedSummary';
 import MovieItem from './components/MovieItem';
 import MovieInfo from './components/MovieInfo';
 
+import StarRating from './components/StarRating';
+
 const tempMovieData = [
   {
     imdbID: 'tt1375666',
@@ -137,6 +139,7 @@ export default function App() {
   return (
     <>
       <Navbar movies={movies} />
+      <StarRating maxRating={7} />
 
       <main className="main">
         {/* <MovieBox movies={movies} /> */}

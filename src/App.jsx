@@ -153,18 +153,6 @@ export default function App() {
               {watched.map((movie) => (
                 <MovieItem movie={movie}>
                   <MovieInfo movie={movie} />
-                  {/* <p>
-                    <span>⭐️</span>
-                    <span>{movie.imdbRating}</span>
-                  </p>
-                  <p>
-                    <span>🌟</span>
-                    <span>{movie.userRating}</span>
-                  </p>
-                  <p>
-                    <span>⏳</span>
-                    <span>{movie.runtime} min</span>
-                  </p> */}
                 </MovieItem>
               ))}
             </ul>

@@ -76,6 +76,13 @@ body {
   /* gap: 2rem; */
 }
 
+.expander-box {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  background-color: #f7f7f7;
+}
+
 .loader {
   text-align: center;
   text-transform: uppercase;

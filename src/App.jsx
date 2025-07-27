@@ -138,7 +138,8 @@ export default function App() {
 
   return (
     <>
-      <StarRating maxRating={7} />
+      <StarRating maxRating={7} defaultRating={3} />
+      <StarRating maxRating={10} size={24} color="red" />
       {/* <Navbar movies={movies} /> */}
 
       <main className="main">

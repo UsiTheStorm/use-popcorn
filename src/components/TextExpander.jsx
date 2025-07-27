@@ -37,7 +37,7 @@ function ExpanderButton({ children, buttonColor, onClick }) {
 }
 
 function TextExpander({
-  expanded = true,
+  expanded = false,
   collapsedNumWords = 10,
   expandButtonText = 'Show more',
   collapseButtonText = 'Show less',

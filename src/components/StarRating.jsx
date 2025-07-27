@@ -1,4 +1,14 @@
 import { useState } from 'react';
+import { PropTypes } from 'prop-types';
+
+StarRating.propTypes = {
+  maxRating: PropTypes.number,
+  color: PropTypes.string,
+  size: PropTypes.number,
+  className: PropTypes.string,
+  defaultRating: PropTypes.number,
+  onSetRating: PropTypes.func,
+};
 
 function Star({ onRate, isFull, onHoverIn, onHoverOut, starStyle, color }) {
   // Svg stars

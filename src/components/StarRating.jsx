@@ -32,7 +32,14 @@ function Star({ onRate, isFull, onHoverIn, onHoverOut, starStyle, color }) {
   );
 }
 
-function StarRating({ maxRating = 5, color = '#fcc419', size = 48 }) {
+function StarRating({
+  maxRating = 5,
+  color = '#fcc419',
+  size = 48,
+  className = '',
+  defaultRating = 0,
+  onSetRating,
+}) {
   // Inline component styles
   const containerStyle = {
     display: 'flex',
@@ -62,18 +69,19 @@ function StarRating({ maxRating = 5, color = '#fcc419', size = 48 }) {
     // padding: '0 3px',
   };
 
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
 
   function handleRate(newRating) {
     setRating(newRating);
+    onSetRating(newRating);
   }
 
   // Ensure maxRating is a positive integer
   const validMaxRating = Number.isInteger(maxRating) && maxRating > 0 ? maxRating : 5;
 
   return (
-    <div style={containerStyle}>
+    <div style={containerStyle} className={className}>
       <div style={starContainerStyle}>
         {Array.from({ length: validMaxRating }, (_, i) => (
           <Star

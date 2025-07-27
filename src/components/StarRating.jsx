@@ -44,7 +44,7 @@ function StarRating({
   const containerStyle = {
     display: 'flex',
     alignItems: 'center',
-    gap: '16px',
+    gap: `${size / 3}px`,
   };
 
   const starContainerStyle = {
@@ -57,7 +57,7 @@ function StarRating({
     lineHeight: 1,
     margin: 0,
     color,
-    fontSize: `${size / 2}px`,
+    fontSize: `${size / 1.4}px`,
   };
 
   const starStyle = {
@@ -66,7 +66,7 @@ function StarRating({
     height: `${size}px`,
     cursor: 'pointer',
 
-    // padding: '0 3px',
+    // padding: '3px',
   };
 
   const [rating, setRating] = useState(defaultRating);

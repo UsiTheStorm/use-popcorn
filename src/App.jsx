@@ -145,13 +145,12 @@ export default function App() {
   const [error, setError] = useState('');
   const [query, setQuery] = useState('');
 
-  const queryT = 'interstellar111';
-
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
 
     if (query.trim().length === 0) {
       setMovies([]);
+      setError('');
       return;
     }
 

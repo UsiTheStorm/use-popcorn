@@ -147,12 +147,20 @@ export default function App() {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
 
     async function fetchMovies() {
-      setIsLoading(true);
-      const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
-      const data = await res.json();
-      console.log(data.Search);
-      setMovies(data.Search);
-      setIsLoading(false);
+      try {
+        setIsLoading(true);
+        const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+
+        if (!res.ok) throw new Error('Fetching data problems');
+
+        const data = await res.json();
+        // console.log(data.Search);
+        setMovies(data.Search);
+        setIsLoading(false);
+      } catch (err) {
+        setError(err.message);
+        console.error(err);
+      }
     }
 
     fetchMovies();

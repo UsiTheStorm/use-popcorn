@@ -5,6 +5,7 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Box from './components/Box';
 import Loader from './components/Loader';
+import ErrorMessage from './components/ErrorMessage';
 import MovieBox from './components/MovieBox';
 import WatchedBox from './components/WatchedBox';
 import MovieList from './components/MovieList';
@@ -141,6 +142,8 @@ export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+
   const query = 'interstellar';
 
   useEffect(() => {

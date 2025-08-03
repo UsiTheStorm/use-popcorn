@@ -159,10 +159,11 @@ export default function App() {
         const data = await res.json();
         // console.log(data.Search);
         setMovies(data.Search);
-        setIsLoading(false);
       } catch (err) {
         setError(err.message);
         console.error(err);
+      } finally {
+        setIsLoading(false);
       }
     }
 

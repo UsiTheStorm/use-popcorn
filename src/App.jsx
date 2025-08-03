@@ -171,7 +171,7 @@ export default function App() {
             <WatchedSummary watched={watched} average={average} />
             <ul className="list">
               {watched.map((movie) => (
-                <MovieItem movie={movie}>
+                <MovieItem key={movie.imdbID} movie={movie}>
                   <MovieInfo movie={movie} />
                 </MovieItem>
               ))}

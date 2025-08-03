@@ -155,33 +155,32 @@ export default function App() {
       return;
     }
 
-    const timer = setTimeout(() => {
-      async function fetchMovies() {
-        try {
-          setIsLoading(true);
-          setError('');
-          const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+    async function fetchMovies() {
+      try {
+        setIsLoading(true);
+        setError('');
+        const res = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
 
-          if (!res.ok) throw new Error('Fetching data problems');
+        if (!res.ok) throw new Error('Fetching data problems');
 
-          const data = await res.json();
+        const data = await res.json();
 
-          console.log(data);
-
-          if (data.Response === 'False') throw new Error('Movie not found');
-          // console.log(data.Search);
-          setMovies(data.Search);
-        } catch (err) {
-          setError(err.message);
-          console.error(err);
-        } finally {
-          setIsLoading(false);
-        }
+        if (data.Response === 'False') throw new Error('Movie not found');
+        setMovies(data.Search);
+      } catch (err) {
+        setError(err.message);
+        console.error(err);
+      } finally {
+        setIsLoading(false);
       }
-      fetchMovies();
-    }, 500);
+    }
 
-    return () => clearTimeout(timer);
+    // debounce
+    const timer = setTimeout(fetchMovies, 500);
+
+    return () => {
+      clearTimeout(timer);
+    };
   }, [query]);
 
   return (

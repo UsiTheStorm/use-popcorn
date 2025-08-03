@@ -176,7 +176,11 @@ export default function App() {
       <Navbar movies={movies} />
 
       <main className="main">
-        <Box>{isLoading ? <Loader /> : <MovieList movies={movies} />}</Box>
+        <Box>
+          {isLoading && <Loader />}
+          {!isLoading && !error && <MovieList movies={movies} />}
+          {error && <ErrorMessage message={error} />}
+        </Box>
         <Box>
           <>
             <WatchedSummary watched={watched} average={average} />

@@ -19,13 +19,13 @@ function NumResults({ movies }) {
   );
 }
 
-function Navbar({ movies }) {
+function Navbar({ movies, query, setQuery }) {
   //   const [query, setQuery] = useState('');
 
   return (
     <nav className="nav-bar">
       <Logo />
-      <SearchBar />
+      <SearchBar query={query} setQuery={setQuery} />
       <NumResults movies={movies} />
     </nav>
   );

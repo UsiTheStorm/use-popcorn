@@ -143,8 +143,9 @@ export default function App() {
   const [watched, setWatched] = useState(tempWatchedData);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [query, setQuery] = useState('');
 
-  const query = 'interstellar';
+  const queryT = 'interstellar111';
 
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
@@ -152,6 +153,7 @@ export default function App() {
     async function fetchMovies() {
       try {
         setIsLoading(true);
+        setError('');
         const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
 
         if (!res.ok) throw new Error('Fetching data problems');
@@ -172,13 +174,13 @@ export default function App() {
     }
 
     fetchMovies();
-  }, []);
+  }, [query]);
 
   return (
     <>
       {/* <StarRating maxRating={7} defaultRating={3} />
       <StarRating maxRating={10} size={24} color="red" /> */}
-      <Navbar movies={movies} />
+      <Navbar movies={movies} query={query} setQuery={setQuery} />
 
       <main className="main">
         <Box>

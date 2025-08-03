@@ -148,7 +148,7 @@ export default function App() {
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
 
-    if (query.trim().length === 0) {
+    if (query.trim().length < 3) {
       setMovies([]);
       setError('');
       return;

@@ -150,30 +150,38 @@ export default function App() {
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
 
-    async function fetchMovies() {
-      try {
-        setIsLoading(true);
-        setError('');
-        const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
-
-        if (!res.ok) throw new Error('Fetching data problems');
-
-        const data = await res.json();
-
-        console.log(data);
-
-        if (data.Response === 'False') throw new Error('Movie not found');
-        // console.log(data.Search);
-        setMovies(data.Search);
-      } catch (err) {
-        setError(err.message);
-        console.error(err);
-      } finally {
-        setIsLoading(false);
-      }
+    if (query.trim().length === 0) {
+      setMovies([]);
+      return;
     }
 
-    fetchMovies();
+    const timer = setTimeout(() => {
+      async function fetchMovies() {
+        try {
+          setIsLoading(true);
+          setError('');
+          const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+
+          if (!res.ok) throw new Error('Fetching data problems');
+
+          const data = await res.json();
+
+          console.log(data);
+
+          if (data.Response === 'False') throw new Error('Movie not found');
+          // console.log(data.Search);
+          setMovies(data.Search);
+        } catch (err) {
+          setError(err.message);
+          console.error(err);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+      fetchMovies();
+    }, 500);
+
+    return () => clearTimeout(timer);
   }, [query]);
 
   return (

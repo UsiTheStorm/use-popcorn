@@ -157,6 +157,10 @@ export default function App() {
         if (!res.ok) throw new Error('Fetching data problems');
 
         const data = await res.json();
+
+        console.log(data);
+
+        if (data.Response === 'False') throw new Error('Movie not found');
         // console.log(data.Search);
         setMovies(data.Search);
       } catch (err) {

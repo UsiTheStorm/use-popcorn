@@ -4,6 +4,7 @@ import './App.css';
 
 import Navbar from './components/Navbar';
 import Box from './components/Box';
+import Loader from './components/Loader';
 import MovieBox from './components/MovieBox';
 import WatchedBox from './components/WatchedBox';
 import MovieList from './components/MovieList';
@@ -139,15 +140,19 @@ const KEY = '52a6b1a2';
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [watched, setWatched] = useState(tempWatchedData);
+  const [isLoading, setIsLoading] = useState(false);
   const query = 'interstellar';
 
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
 
     async function fetchMovies() {
+      setIsLoading(true);
       const res = await fetch(`http://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
       const data = await res.json();
+      console.log(data.Search);
       setMovies(data.Search);
+      setIsLoading(false);
     }
 
     fetchMovies();
@@ -160,9 +165,7 @@ export default function App() {
       <Navbar movies={movies} />
 
       <main className="main">
-        <Box>
-          <MovieList movies={movies} />
-        </Box>
+        <Box>{isLoading ? <Loader /> : <MovieList movies={movies} />}</Box>
         <Box>
           <>
             <WatchedSummary watched={watched} average={average} />

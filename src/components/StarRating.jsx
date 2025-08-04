@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { PropTypes } from 'prop-types';
 
 StarRating.propTypes = {
@@ -81,6 +81,10 @@ function StarRating({
 
   const [rating, setRating] = useState(defaultRating);
   const [tempRating, setTempRating] = useState(0);
+
+  useEffect(() => {
+    setRating(defaultRating);
+  }, [defaultRating]);
 
   function handleRate(newRating) {
     setRating(newRating);

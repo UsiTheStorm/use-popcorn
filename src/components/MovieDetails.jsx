@@ -21,8 +21,9 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
         );
         if (!res.ok) throw new Error('Fetching data problems');
 
-        const movieDetails = await res.json();
-        console.log(movieDetails);
+        const data = await res.json();
+        setMovieDetails(data);
+        // console.log(movieDetails);
       } catch (err) {
         if (err.name === 'AbortError') {
           console.log('Request canceled 🚦');

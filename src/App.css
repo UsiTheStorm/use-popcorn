@@ -164,13 +164,14 @@ body {
 
 .list {
   list-style: none;
-  padding: 0.8rem 0;
+  padding: 1.6rem 0;
+  /* padding-bottom: 1.6rem; */
 
   flex-grow: 1;
 
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  /* gap: 0.8rem; */
 
   /* overflow-y: auto;
   overflow-x: hidden; */

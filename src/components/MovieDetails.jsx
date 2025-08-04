@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Loader from './Loader';
 
 function MovieDetails({ selectedId, onCloseMovie, KEY }) {
-  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieDetails, setMovieDetails] = useState({});
 
   useEffect(() => {
     if (!selectedId) return;
@@ -13,7 +13,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
 
     async function getMovieDetails() {
       try {
-        setMovieDetails(null);
+        setMovieDetails({});
 
         const res = await fetch(
           `https://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}&plot=full`,

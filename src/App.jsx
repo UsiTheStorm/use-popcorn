@@ -144,6 +144,7 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [query, setQuery] = useState('');
+  const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
@@ -166,6 +167,7 @@ export default function App() {
 
         if (data.Response === 'False') throw new Error('Movie not found');
         setMovies(data.Search);
+        setQuantity(data.totalResults);
       } catch (err) {
         setError(err.message);
         console.error(err);
@@ -186,7 +188,7 @@ export default function App() {
     <>
       {/* <StarRating maxRating={7} defaultRating={3} />
       <StarRating maxRating={10} size={24} color="red" /> */}
-      <Navbar movies={movies} query={query} setQuery={setQuery} />
+      <Navbar quantity={quantity} query={query} setQuery={setQuery} />
 
       <main className="main">
         <Box>

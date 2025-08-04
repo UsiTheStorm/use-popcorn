@@ -11,22 +11,22 @@ function Logo() {
   );
 }
 
-function NumResults({ movies }) {
+function NumResults({ quantity }) {
   return (
     <p className="num-results">
-      Found <strong>{movies?.length || 0}</strong> results
+      Found <strong>{quantity}</strong> results
     </p>
   );
 }
 
-function Navbar({ movies, query, setQuery }) {
+function Navbar({ quantity, query, setQuery }) {
   //   const [query, setQuery] = useState('');
 
   return (
     <nav className="nav-bar">
       <Logo />
       <SearchBar query={query} setQuery={setQuery} />
-      <NumResults movies={movies} />
+      <NumResults quantity={quantity} />
     </nav>
   );
 }

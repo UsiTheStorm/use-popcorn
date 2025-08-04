@@ -145,6 +145,7 @@ export default function App() {
   const [error, setError] = useState('');
   const [query, setQuery] = useState('');
   const [quantity, setQuantity] = useState(0);
+  const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
@@ -193,7 +194,7 @@ export default function App() {
       <main className="main">
         <Box>
           {isLoading && <Loader />}
-          {!isLoading && !error && <MovieList movies={movies} />}
+          {!isLoading && !error && <MovieList movies={movies} onSelect={setSelectedId} />}
           {error && <ErrorMessage message={error} />}
         </Box>
         <Box>

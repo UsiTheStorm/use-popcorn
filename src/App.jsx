@@ -12,6 +12,7 @@ import MovieList from './components/MovieList';
 import WatchedSummary from './components/WatchedSummary';
 import MovieItem from './components/MovieItem';
 import MovieInfo from './components/MovieInfo';
+import MovieDetails from './components/MovieDetails';
 
 import StarRating from './components/StarRating';
 
@@ -147,6 +148,10 @@ export default function App() {
   const [quantity, setQuantity] = useState(0);
   const [selectedId, setSelectedId] = useState(null);
 
+  function handelSelectedMovie(id) {
+    setSelectedId(id);
+  }
+
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
 
@@ -194,20 +199,26 @@ export default function App() {
       <main className="main">
         <Box>
           {isLoading && <Loader />}
-          {!isLoading && !error && <MovieList movies={movies} onSelect={setSelectedId} />}
+          {!isLoading && !error && (
+            <MovieList movies={movies} onSelectMovie={handelSelectedMovie} />
+          )}
           {error && <ErrorMessage message={error} />}
         </Box>
         <Box>
-          <>
-            <WatchedSummary watched={watched} average={average} />
-            <ul className="list">
-              {watched.map((movie) => (
-                <MovieItem key={movie.imdbID} movie={movie}>
-                  <MovieInfo movie={movie} />
-                </MovieItem>
-              ))}
-            </ul>
-          </>
+          {selectedId ? (
+            <MovieDetails selectedId={selectedId} />
+          ) : (
+            <>
+              <WatchedSummary watched={watched} average={average} />
+              <ul className="list">
+                {watched.map((movie) => (
+                  <MovieItem key={movie.imdbID} movie={movie}>
+                    <MovieInfo movie={movie} />
+                  </MovieItem>
+                ))}
+              </ul>
+            </>
+          )}
         </Box>
       </main>
     </>

@@ -2,11 +2,11 @@ import React from 'react';
 
 import MovieItem from './MovieItem';
 
-function MovieList({ movies, onSelect }) {
+function MovieList({ movies, onSelectMovie }) {
   return (
-    <ul className="list">
+    <ul className="list list-movies">
       {movies?.map((movie) => (
-        <MovieItem movie={movie} key={movie.imdbID} onSelect={onSelect}>
+        <MovieItem movie={movie} key={movie.imdbID} onSelectMovie={onSelectMovie}>
           <p>
             <span>🗓</span>
             <span>{movie.Year}</span>

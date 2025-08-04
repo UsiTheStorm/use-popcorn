@@ -152,6 +152,10 @@ export default function App() {
     setSelectedId(id);
   }
 
+  function handleCloseMovie() {
+    setSelectedId(null);
+  }
+
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
 
@@ -206,7 +210,7 @@ export default function App() {
         </Box>
         <Box>
           {selectedId ? (
-            <MovieDetails selectedId={selectedId} />
+            <MovieDetails selectedId={selectedId} onCloseMovie={handleCloseMovie} />
           ) : (
             <>
               <WatchedSummary watched={watched} average={average} />

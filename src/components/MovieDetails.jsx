@@ -1,6 +1,43 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 
-function MovieDetails({ selectedId, onCloseMovie }) {
+import Loader from './Loader';
+
+function MovieDetails({ selectedId, onCloseMovie, KEY }) {
+  const [movieDetails, setMovieDetails] = useState(null);
+
+  useEffect(() => {
+    if (!selectedId) return;
+
+    const controller = new AbortController(); // створюємо контролер
+    const { signal } = controller;
+
+    async function getMovieDetails() {
+      try {
+        setMovieDetails(null);
+
+        const res = await fetch(
+          `https://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}&plot=full`,
+          { signal },
+        );
+        if (!res.ok) throw new Error('Fetching data problems');
+
+        const movieDetails = await res.json();
+        console.log(movieDetails);
+      } catch (err) {
+        if (err.name === 'AbortError') {
+          console.log('Request canceled 🚦');
+        } else {
+          console.error(err);
+        }
+      }
+    }
+
+    getMovieDetails();
+    return () => controller.abort();
+  }, [selectedId, KEY]);
+
+  if (!movieDetails) return <Loader />;
+
   return (
     <>
       <div className="details">{selectedId}</div>

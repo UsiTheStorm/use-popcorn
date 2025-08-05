@@ -6,7 +6,7 @@ import DataDisplay from './DataDisplay';
 
 const placeholder = '/poster-placeholder.png';
 
-function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched }) {
+function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched }) {
   const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -69,7 +69,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched }) {
   } = movieDetails;
 
   const roundedImdbRating = imdbRating ? Math.floor(Number(imdbRating)) : 0;
-  console.log(roundedImdbRating);
+  // console.log(roundedImdbRating);
 
   function handleAdd() {
     const newWatchedMovie = {
@@ -87,6 +87,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched }) {
     onCloseMovie();
   }
 
+  const watchedMovie = watched.find((movie) => movie.imdbID === selectedId);
   // if (!movieDetails) return <Loader />;
 
   return (
@@ -116,7 +117,11 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched }) {
           </header>
           <section>
             <div className="rating">
-              <StarRating maxRating={10} size={28} onSetRating={setUserRating} />
+              {watchedMovie ? (
+                <p>You rate this movie: {watchedMovie.userRating || '-'}</p>
+              ) : (
+                <StarRating maxRating={10} size={28} onSetRating={setUserRating} />
+              )}
 
               {userRating > 0 && (
                 <button className="btn-add" onClick={handleAdd}>

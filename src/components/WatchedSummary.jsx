@@ -4,7 +4,7 @@ import React from 'react';
 
 function getValidAvarage(arr) {
   const validNum = arr.filter((val) => typeof val === 'number' && val);
-  console.log(validNum);
+  // console.log(validNum);
 
   return validNum.length !== 0
     ? (validNum.reduce((acc, cur) => acc + cur, 0) / validNum.length).toFixed(1)

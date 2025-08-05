@@ -61,6 +61,7 @@ export default function App() {
 
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
+    console.log(watched);
   }
 
   useEffect(() => {
@@ -127,6 +128,7 @@ export default function App() {
               onCloseMovie={handleCloseMovie}
               KEY={KEY}
               onAddWatched={handleAddWatched}
+              watched={watched}
             />
           ) : (
             <>

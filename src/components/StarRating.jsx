@@ -76,7 +76,7 @@ function StarRating({
     height: `${size}px`,
     cursor: 'pointer',
 
-    // padding: '3px',
+    padding: '3px',
   };
 
   const [rating, setRating] = useState(defaultRating);

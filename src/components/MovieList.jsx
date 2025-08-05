@@ -9,7 +9,7 @@ function MovieList({ movies, onSelectMovie }) {
         <MovieItem movie={movie} key={movie.imdbID} onSelectMovie={onSelectMovie}>
           <p>
             <span>🗓</span>
-            <span>{movie.Year}</span>
+            <span>{movie.year}</span>
           </p>
         </MovieItem>
       ))}

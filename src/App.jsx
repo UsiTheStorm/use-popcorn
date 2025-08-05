@@ -18,9 +18,9 @@ import DataDisplay from './components/DataDisplay';
 const tempWatchedData = [
   {
     imdbID: 'tt1375666',
-    Title: 'Inception',
-    Year: '2010',
-    Poster:
+    title: 'Inception',
+    year: '2010',
+    poster:
       'https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg',
     runtime: 148,
     imdbRating: 8.8,
@@ -28,9 +28,9 @@ const tempWatchedData = [
   },
   {
     imdbID: 'tt0088763',
-    Title: 'Back to the Future',
-    Year: '1985',
-    Poster:
+    title: 'Back to the Future',
+    year: '1985',
+    poster:
       'https://m.media-amazon.com/images/M/MV5BZmU0M2Y1OGUtZjIxNi00ZjBkLTg1MjgtOWIyNThiZWIwYjRiXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg',
     runtime: 116,
     imdbRating: 8.5,
@@ -38,7 +38,7 @@ const tempWatchedData = [
   },
 ];
 
-const average = (arr) => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+const average = (arr) => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0).toFixed(1);
 
 const KEY = '52a6b1a2';
 
@@ -59,6 +59,10 @@ export default function App() {
     setSelectedId(null);
   }
 
+  function handleAddWatched(movie) {
+    setWatched((watched) => [...watched, movie]);
+  }
+
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
 
@@ -77,10 +81,16 @@ export default function App() {
         if (!res.ok) throw new Error('Fetching data problems');
 
         const data = await res.json();
-
         if (data.Response === 'False') throw new Error('Movie not found');
 
-        setMovies(data.Search);
+        const normalizedMovies = data.Search.map((movie) => ({
+          imdbID: movie.imdbID,
+          title: movie.Title,
+          year: movie.Year,
+          poster: movie.Poster,
+        }));
+
+        setMovies(normalizedMovies);
         setQuantity(data.totalResults);
       } catch (err) {
         setError(err.message);
@@ -112,7 +122,12 @@ export default function App() {
         </Box>
         <Box>
           {selectedId ? (
-            <MovieDetails selectedId={selectedId} onCloseMovie={handleCloseMovie} KEY={KEY} />
+            <MovieDetails
+              selectedId={selectedId}
+              onCloseMovie={handleCloseMovie}
+              KEY={KEY}
+              onAddWatched={handleAddWatched}
+            />
           ) : (
             <>
               <WatchedSummary watched={watched} average={average} />
@@ -130,4 +145,3 @@ export default function App() {
     </>
   );
 }
-// http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2

@@ -2,7 +2,7 @@ import React from 'react';
 
 const placeholder = '/poster-placeholder.png';
 
-function MovieItem({ movie: { imdbID, Title: title, Poster: poster }, children, onSelectMovie }) {
+function MovieItem({ movie: { imdbID, title, poster }, children, onSelectMovie }) {
   return (
     <li onClick={() => onSelectMovie(imdbID)}>
       <img

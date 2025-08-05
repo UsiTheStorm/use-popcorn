@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 
 import Loader from './Loader';
 import StarRating from './StarRating';
+import DataDisplay from './DataDisplay';
 
 function MovieDetails({ selectedId, onCloseMovie, KEY }) {
   const [movieDetails, setMovieDetails] = useState({});
@@ -63,8 +64,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
 
   return (
     <div className="details">
-      {isLoading && <Loader />}
-      {!isLoading && !error && (
+      <DataDisplay isLoading={isLoading} error={error}>
         <>
           <header>
             <button className="btn-back" onClick={onCloseMovie}>
@@ -94,8 +94,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
             <p>Directed by: {director}</p>
           </section>
         </>
-      )}
-      {error && <ErrorMessage message={error} />}
+      </DataDisplay>
     </div>
   );
 }

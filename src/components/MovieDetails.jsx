@@ -117,16 +117,14 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched }) {
           <section>
             <div className="rating">
               <StarRating maxRating={10} size={28} onSetRating={setUserRating} />
-              {/*defaultRating={roundedImdbRating}  */}
-              <button className="btn-add" onClick={handleAdd}>
-                Add to watched
-              </button>
+
+              {userRating > 0 && (
+                <button className="btn-add" onClick={handleAdd}>
+                  Add to watched
+                </button>
+              )}
             </div>
-            {/* <div className="btn-wrapper">
-              <button className="btn-add" onClick={handleAdd}>
-                Add to watched
-              </button>
-            </div> */}
+
             <p>
               <em>{plot}</em>
             </p>

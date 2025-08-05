@@ -202,11 +202,9 @@ export default function App() {
 
       <main className="main">
         <Box>
-          {isLoading && <Loader />}
-          {!isLoading && !error && (
+          <DataDisplay isLoading={isLoading} error={error}>
             <MovieList movies={movies} onSelectMovie={handelSelectedMovie} />
-          )}
-          {error && <ErrorMessage message={error} />}
+          </DataDisplay>
         </Box>
         <Box>
           {selectedId ? (

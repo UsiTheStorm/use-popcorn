@@ -95,16 +95,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
           </section>
         </>
       )}
-      <section>
-        <div className="rating">
-          <StarRating maxRating={10} size={24} defaultRating={roundedImdbRating} />
-        </div>
-        <p>
-          <em>{plot}</em>
-        </p>
-        <p>Starring: {actors}</p>
-        <p>Directed by: {director}</p>
-      </section>
+      {error && <ErrorMessage message={error} />}
     </div>
   );
 }

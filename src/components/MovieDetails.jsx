@@ -10,6 +10,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched }) {
   const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [userRating, setUserRating] = useState(0);
 
   useEffect(() => {
     if (!selectedId) return;
@@ -83,6 +84,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched }) {
     };
 
     onAddWatched(newWatchedMovie);
+    onCloseMovie();
   }
 
   // if (!movieDetails) return <Loader />;
@@ -114,13 +116,17 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched }) {
           </header>
           <section>
             <div className="rating">
-              <StarRating maxRating={10} size={28} defaultRating={roundedImdbRating} />
-            </div>
-            <div className="btn-wrapper">
+              <StarRating maxRating={10} size={28} onSetRating={setUserRating} />
+              {/*defaultRating={roundedImdbRating}  */}
               <button className="btn-add" onClick={handleAdd}>
                 Add to watched
               </button>
             </div>
+            {/* <div className="btn-wrapper">
+              <button className="btn-add" onClick={handleAdd}>
+                Add to watched
+              </button>
+            </div> */}
             <p>
               <em>{plot}</em>
             </p>

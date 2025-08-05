@@ -1,9 +1,19 @@
 import React from 'react';
 
-function WatchedSummary({ watched, average }) {
-  const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
-  const avgUserRating = average(watched.map((movie) => movie.userRating));
-  const avgRuntime = average(watched.map((movie) => movie.runtime));
+// const average = (arr) => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0).toFixed(1);
+
+function getValidAvarage(arr) {
+  const validNum = arr.filter((val) => typeof val === 'number' && val);
+
+  return validNum.length === 0
+    ? (validNum.reduce((acc, cur) => acc + cur, 0) / validNum.length).toFixed(1)
+    : 0;
+}
+
+function WatchedSummary({ watched }) {
+  const avgImdbRating = getValidAvarage(watched.map((movie) => movie.imdbRating));
+  const avgUserRating = getValidAvarage(watched.map((movie) => movie.userRating));
+  const avgRuntime = getValidAvarage(watched.map((movie) => movie.runtime));
 
   return (
     <div className="summary">

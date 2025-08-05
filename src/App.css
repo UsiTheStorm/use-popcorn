@@ -188,6 +188,7 @@ body {
   grid-template-rows: auto auto;
   column-gap: 2.4rem;
   font-size: 1.6rem;
+  min-height: 9rem;
   align-items: center;
   /* flex-wrap: wrap; */
 
@@ -340,10 +341,12 @@ body {
 .btn-add {
   background-color: var(--color-primary);
   color: var(--color-text);
+  /* max-width: 20rem; */
   border: none;
   border-radius: 10rem;
   font-size: 1.4rem;
-  padding: 1rem;
+  padding: 1rem 4rem;
+
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
@@ -353,6 +356,11 @@ body {
   background-color: var(--color-primary-light);
 }
 
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  /* gap: 2.4rem; */
+}
 .seconds {
   background-color: var(--color-background-100);
   width: 8rem;
@@ -505,6 +513,10 @@ FONT SIZE SYSTEM (px)
     font-size: 1.4rem;
   }
 
+  .details section {
+    padding: 1.6rem 2.4rem;
+  }
+
   .btn-delete {
     position: static;
     margin-top: 0.8rem;
@@ -512,6 +524,11 @@ FONT SIZE SYSTEM (px)
     padding: 0.6rem 1.2rem;
     font-size: 1rem;
     border-radius: 0.5rem;
+  }
+
+  .btn-add {
+    padding: 1.6rem 8rem;
+    font-size: 2.4rem;
   }
 
   .summary {

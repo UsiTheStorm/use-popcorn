@@ -12,6 +12,8 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched }) 
   const [error, setError] = useState('');
   const [userRating, setUserRating] = useState(0);
 
+  const isWatched = watched.find((movie) => movie.imdbID === selectedId);
+
   useEffect(() => {
     if (!selectedId) return;
 
@@ -87,7 +89,6 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched }) 
     onCloseMovie();
   }
 
-  const watchedMovie = watched.find((movie) => movie.imdbID === selectedId);
   // if (!movieDetails) return <Loader />;
 
   return (
@@ -117,8 +118,8 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched }) 
           </header>
           <section>
             <div className="rating">
-              {watchedMovie ? (
-                <p>You rate this movie: {watchedMovie.userRating || '-'}</p>
+              {isWatched ? (
+                <p>You rate this movie: {isWatched.userRating || '-'}⭐️</p>
               ) : (
                 <StarRating maxRating={10} size={28} onSetRating={setUserRating} />
               )}

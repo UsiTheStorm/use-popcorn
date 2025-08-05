@@ -6,7 +6,7 @@ import DataDisplay from './DataDisplay';
 
 const placeholder = '/poster-placeholder.png';
 
-function MovieDetails({ selectedId, onCloseMovie, KEY }) {
+function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched }) {
   const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -61,6 +61,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
     Genre: genre,
     Plot: plot,
     Released: released,
+    Year: year,
     imdbRating,
     Actors: actors,
     Director: director,
@@ -68,6 +69,21 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
 
   const roundedImdbRating = imdbRating ? Math.floor(Number(imdbRating)) : 0;
   console.log(roundedImdbRating);
+
+  function handleAdd() {
+    const newWatchedMovie = {
+      imdbID: selectedId,
+      title,
+      poster,
+      year,
+      released,
+      runtime: Number(runtime.split(' ').at(0)),
+      imdbRating: Number(imdbRating),
+      userRating: 0,
+    };
+
+    onAddWatched(newWatchedMovie);
+  }
 
   // if (!movieDetails) return <Loader />;
 
@@ -98,7 +114,12 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
           </header>
           <section>
             <div className="rating">
-              <StarRating maxRating={10} size={24} defaultRating={roundedImdbRating} />
+              <StarRating maxRating={10} size={28} defaultRating={roundedImdbRating} />
+            </div>
+            <div className="btn-wrapper">
+              <button className="btn-add" onClick={handleAdd}>
+                Add to watched
+              </button>
             </div>
             <p>
               <em>{plot}</em>

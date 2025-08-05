@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 
-import Loader from './Loader';
+// import Loader from './Loader';
 import StarRating from './StarRating';
 import DataDisplay from './DataDisplay';
 
 function MovieDetails({ selectedId, onCloseMovie, KEY }) {
-  const [movieDetails, setMovieDetails] = useState({});
+  const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -28,6 +28,8 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
         if (!res.ok) throw new Error('Fetching data problems');
 
         const data = await res.json();
+        if (data.Response === 'False') throw new Error(data.Error || 'Movie not found');
+
         setMovieDetails(data);
         // console.log(movieDetails);
       } catch (err) {
@@ -35,6 +37,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
           console.log('Request canceled 🚦');
         } else {
           console.error(err);
+          setError(err.message);
         }
       } finally {
         setIsLoading(false);
@@ -44,6 +47,10 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
     getMovieDetails();
     return () => controller.abort();
   }, [selectedId, KEY]);
+
+  if (!movieDetails) {
+    return <DataDisplay isLoading={isLoading} error={error} />;
+  }
 
   const {
     Title: title,
@@ -55,12 +62,12 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
     imdbRating,
     Actors: actors,
     Director: director,
-  } = movieDetails || {};
+  } = movieDetails;
 
-  const roundedImdbRating = imdbRating ? Math.floor(parseFloat(imdbRating.trim())) : 0;
+  const roundedImdbRating = imdbRating ? Math.floor(Number(imdbRating)) : 0;
   console.log(roundedImdbRating);
 
-  if (!movieDetails) return <Loader />;
+  // if (!movieDetails) return <Loader />;
 
   return (
     <div className="details">

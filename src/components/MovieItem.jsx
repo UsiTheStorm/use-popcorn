@@ -1,10 +1,16 @@
 import React from 'react';
 
-function MovieItem({ movie, children, onSelectMovie }) {
+const placeholder = '/poster-placeholder.png';
+
+function MovieItem({ movie: { imdbID, Title: title, Poster: poster }, children, onSelectMovie }) {
   return (
-    <li onClick={() => onSelectMovie(movie.imdbID)}>
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3 title={movie.Title}>{movie.Title}</h3>
+    <li onClick={() => onSelectMovie(imdbID)}>
+      <img
+        src={poster !== 'N/A' ? poster : placeholder}
+        alt={`${title} poster`}
+        onError={(e) => (e.currentTarget.src = placeholder)}
+      />
+      <h3 title={title}>{title}</h3>
       <div>{children}</div>
     </li>
   );

@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import StarRating from './StarRating';
 import DataDisplay from './DataDisplay';
 
+const placeholder = '/poster-placeholder.png';
+
 function MovieDetails({ selectedId, onCloseMovie, KEY }) {
   const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -77,7 +79,11 @@ function MovieDetails({ selectedId, onCloseMovie, KEY }) {
             <button className="btn-back" onClick={onCloseMovie}>
               &lt;
             </button>
-            <img src={poster} alt={`Poster of ${title}`} />
+            <img
+              src={poster !== 'N/A' ? poster : placeholder}
+              alt={`${title} poster`}
+              onError={(e) => (e.currentTarget.src = placeholder)}
+            />
             <div className="details-overview">
               <h2>{title}</h2>
               <p>

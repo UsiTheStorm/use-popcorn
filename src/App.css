@@ -356,11 +356,10 @@ body {
   background-color: var(--color-primary-light);
 }
 
-.btn-wrapper {
+/* .btn-wrapper {
   display: flex;
   justify-content: center;
-  /* gap: 2.4rem; */
-}
+} */
 .seconds {
   background-color: var(--color-background-100);
   width: 8rem;

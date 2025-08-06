@@ -2,7 +2,7 @@ import React from 'react';
 
 const placeholder = '/poster-placeholder.png';
 
-function MovieItem({ movie: { imdbID, title, poster }, children, onSelectMovie }) {
+function MovieItem({ movie: { imdbID, title, poster }, children, onSelectMovie, onDeleteWatched }) {
   return (
     <li onClick={() => onSelectMovie(imdbID)}>
       <img
@@ -12,6 +12,11 @@ function MovieItem({ movie: { imdbID, title, poster }, children, onSelectMovie }
       />
       <h3 title={title}>{title}</h3>
       <div>{children}</div>
+      {onDeleteWatched && (
+        <button className="btn-delete" onClick={() => onDeleteWatched(imdbID)}>
+          X
+        </button>
+      )}
     </li>
   );
 }

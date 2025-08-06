@@ -64,6 +64,10 @@ export default function App() {
     console.log(watched);
   }
 
+  function handleDeleteWatched(id) {
+    setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
+  }
+
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
 
@@ -133,9 +137,9 @@ export default function App() {
           ) : (
             <>
               <WatchedSummary watched={watched} />
-              <ul className="list">
+              <ul className="list list-movies">
                 {watched.map((movie) => (
-                  <MovieItem key={movie.imdbID} movie={movie}>
+                  <MovieItem key={movie.imdbID} movie={movie} onDeleteWatched={handleDeleteWatched}>
                     <MovieInfo movie={movie} />
                   </MovieItem>
                 ))}

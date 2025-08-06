@@ -122,7 +122,16 @@ export default function App() {
       <main className="main">
         <Box>
           <DataDisplay isLoading={isLoading} error={error}>
-            <MovieList movies={movies} onSelectMovie={handelSelectedMovie} />
+            <MovieList
+              movies={movies}
+              onSelectMovie={handelSelectedMovie}
+              render={(movie) => (
+                <p>
+                  <span>🗓</span>
+                  <span>{movie.year}</span>
+                </p>
+              )}
+            />
           </DataDisplay>
         </Box>
         <Box>
@@ -137,13 +146,12 @@ export default function App() {
           ) : (
             <>
               <WatchedSummary watched={watched} />
-              <ul className="list list-movies">
-                {watched.map((movie) => (
-                  <MovieItem key={movie.imdbID} movie={movie} onDeleteWatched={handleDeleteWatched}>
-                    <MovieInfo movie={movie} />
-                  </MovieItem>
-                ))}
-              </ul>
+              <MovieList
+                movies={watched}
+                onSelectMovie={handelSelectedMovie}
+                onDeleteWatched={handleDeleteWatched}
+                render={(movie) => <MovieInfo movie={movie} />}
+              />
             </>
           )}
         </Box>

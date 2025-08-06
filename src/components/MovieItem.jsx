@@ -4,7 +4,7 @@ const placeholder = '/poster-placeholder.png';
 
 function MovieItem({ movie: { imdbID, title, poster }, children, onSelectMovie, onDeleteWatched }) {
   return (
-    <li onClick={() => onSelectMovie(imdbID)}>
+    <li onClick={() => onSelectMovie?.(imdbID)}>
       <img
         src={poster !== 'N/A' ? poster : placeholder}
         alt={`${title} poster`}
@@ -13,7 +13,13 @@ function MovieItem({ movie: { imdbID, title, poster }, children, onSelectMovie, 
       <h3 title={title}>{title}</h3>
       <div>{children}</div>
       {onDeleteWatched && (
-        <button className="btn-delete" onClick={() => onDeleteWatched(imdbID)}>
+        <button
+          className="btn-delete"
+          onClick={(e) => {
+            e.stopPropagation();
+            onDeleteWatched(imdbID);
+          }}
+        >
           X
         </button>
       )}

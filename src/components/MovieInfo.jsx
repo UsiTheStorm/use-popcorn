@@ -5,15 +5,15 @@ function MovieInfo({ movie }) {
     <>
       <p>
         <span>⭐️</span>
-        <span>{movie.imdbRating}</span>
+        {movie.imdbRating > 0 ? <span>{movie.imdbRating}</span> : <span> - </span>}
       </p>
       <p>
         <span>🌟</span>
-        <span>{movie.userRating}</span>
+        {movie.userRating > 0 ? <span>{movie.userRating}</span> : <span> - </span>}
       </p>
       <p>
         <span>⏳</span>
-        <span>{movie.runtime} min</span>
+        {movie.runtime > 0 ? <span>{movie.runtime} min </span> : <span> - min</span>}
       </p>
     </>
   );

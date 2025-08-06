@@ -5,7 +5,7 @@ function MovieInfo({ movie }) {
     <>
       <p>
         <span>⭐️</span>
-        {movie.imdbRating > 0 ? <span>{movie.imdbRating}</span> : <span> - </span>}
+        {movie.imdbRating > 0 ? <span>{movie.imdbRating}</span> : <span> N/A </span>}
       </p>
       <p>
         <span>🌟</span>

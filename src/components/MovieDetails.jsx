@@ -65,11 +65,17 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, on
   }, [movieDetails]);
 
   useEffect(() => {
-    document.addEventListener('keydown', (e) => {
+    function handleKeyDown(e) {
       if (e.key === 'Escape') {
         onCloseMovie();
       }
-    });
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
   }, [onCloseMovie]);
 
   if (!movieDetails) {

@@ -53,6 +53,17 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, on
     return () => controller.abort();
   }, [selectedId, KEY]);
 
+  // Page title change
+  useEffect(() => {
+    if (movieDetails?.Title) {
+      document.title = `Movie | ${movieDetails.Title}`;
+    }
+
+    return () => {
+      document.title = 'usePopcorn';
+    };
+  }, [movieDetails]);
+
   if (!movieDetails) {
     return <DataDisplay isLoading={isLoading} error={error} />;
   }
@@ -70,10 +81,12 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, on
     Director: director,
   } = movieDetails;
 
-  const roundedImdbRating = imdbRating ? Math.floor(Number(imdbRating)) : 0;
+  // const roundedImdbRating = imdbRating ? Math.floor(Number(imdbRating)) : 0;
   // console.log(roundedImdbRating);
 
   function handleAdd() {
+    // if (!movieDetails) return <DataDisplay isLoading={isLoading} error={error} />;
+
     const newWatchedMovie = {
       imdbID: selectedId,
       title,

@@ -64,6 +64,14 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, on
     };
   }, [movieDetails]);
 
+  useEffect(() => {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        onCloseMovie();
+      }
+    });
+  }, [onCloseMovie]);
+
   if (!movieDetails) {
     return <DataDisplay isLoading={isLoading} error={error} />;
   }

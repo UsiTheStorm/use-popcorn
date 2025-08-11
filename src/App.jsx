@@ -69,6 +69,14 @@ export default function App() {
   }
 
   useEffect(() => {
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        handleCloseMovie();
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
 
     const controller = new AbortController();

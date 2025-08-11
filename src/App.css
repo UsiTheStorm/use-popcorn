@@ -265,6 +265,8 @@ body {
 .details {
   line-height: 1.4;
   font-size: 1.4rem;
+  border-radius: 0.9rem;
+  overflow: hidden;
 }
 
 .details header {

@@ -101,8 +101,10 @@ export default function App() {
         setMovies(normalizedMovies);
         setQuantity(data.totalResults);
       } catch (err) {
-        setError(err.message);
-        console.error(err);
+        if (err.name !== 'AbortError') {
+          setError(err.message);
+          console.error(err);
+        }
       } finally {
         setIsLoading(false);
       }

@@ -10,7 +10,7 @@ import Box from './components/Box';
 // import WatchedBox from './components/WatchedBox';
 import MovieList from './components/MovieList';
 import WatchedSummary from './components/WatchedSummary';
-import MovieItem from './components/MovieItem';
+// import MovieItem from './components/MovieItem';
 import MovieInfo from './components/MovieInfo';
 import MovieDetails from './components/MovieDetails';
 import DataDisplay from './components/DataDisplay';
@@ -38,7 +38,7 @@ const tempWatchedData = [
   },
 ];
 
-const average = (arr) => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0).toFixed(1);
+// const average = (arr) => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0).toFixed(1);
 
 const KEY = '52a6b1a2';
 
@@ -108,6 +108,7 @@ export default function App() {
 
         setMovies(normalizedMovies);
         setQuantity(data.totalResults);
+        setError('');
       } catch (err) {
         if (err.name !== 'AbortError') {
           setError(err.message);

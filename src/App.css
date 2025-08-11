@@ -399,13 +399,18 @@ FONT SIZE SYSTEM (px)
 
   .main {
     flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     gap: 4.2rem;
   }
 
   .box {
-    max-width: 50rem;
+    max-width: 80rem;
     width: 100%;
+  }
+
+  .main:has(.box .details) > .box:first-child {
+    display: none;
   }
 
   .list li {
@@ -484,17 +489,15 @@ FONT SIZE SYSTEM (px)
   }
 
   .btn-delete {
-    position: static;
-    margin-top: 0.8rem;
-    width: auto;
-    padding: 0.6rem 1.2rem;
-    font-size: 1rem;
-    border-radius: 0.5rem;
+    top: 1.2rem;
+    right: 1.2rem;
+    height: 2.4rem;
+    font-size: 1.2rem;
   }
 
   .btn-add {
-    padding: 1.6rem 8rem;
-    font-size: 2.4rem;
+    padding: 1.6rem 5rem;
+    font-size: 2rem;
   }
 
   .summary {
@@ -505,5 +508,9 @@ FONT SIZE SYSTEM (px)
     flex-wrap: wrap;
     justify-content: space-evenly;
     gap: 0.8rem;
+  }
+
+  .rating {
+    width: 100%;
   }
 }

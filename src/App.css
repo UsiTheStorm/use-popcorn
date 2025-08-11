@@ -392,6 +392,18 @@ body {
   justify-content: center;
 }
 
+.rating-value {
+  visibility: hidden;
+
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.rating-value.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
 /*
 SPACING SYSTEM (px)
 2 / 4 / 8 / 12 / 16 / 24 / 32 / 40 / 48 / 64 / 80 / 96 / 128

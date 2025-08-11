@@ -68,6 +68,9 @@ function StarRating({
     margin: 0,
     color,
     fontSize: `${size / 1.4}px`,
+    width: '2ch',
+    // textAlign: 'right',
+    fontFamily: 'monospace',
   };
 
   const starStyle = {
@@ -109,7 +112,9 @@ function StarRating({
           />
         ))}
       </div>
-      <p style={textStyle}>{tempRating || rating || ''}</p>
+      <p style={textStyle} className={`rating-value ${tempRating || rating > 0 ? 'visible' : ''}`}>
+        {tempRating || rating || '0'}
+      </p>
     </div>
   );
 }

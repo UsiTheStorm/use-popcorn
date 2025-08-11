@@ -71,6 +71,9 @@ export default function App() {
   useEffect(() => {
     // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
 
+    const controller = new AbortController();
+    const { signal } = controller;
+
     if (query.trim().length < 3) {
       setMovies([]);
       setError('');
@@ -81,7 +84,7 @@ export default function App() {
       try {
         setIsLoading(true);
         setError('');
-        const res = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`);
+        const res = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`, { signal });
 
         if (!res.ok) throw new Error('Fetching data problems');
 
@@ -109,6 +112,7 @@ export default function App() {
     const timer = setTimeout(fetchMovies, 500);
 
     return () => {
+      controller.abort();
       clearTimeout(timer);
     };
   }, [query]);

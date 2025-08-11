@@ -4,13 +4,9 @@ import './App.css';
 
 import Navbar from './components/Navbar';
 import Box from './components/Box';
-// import Loader from './components/Loader';
-// import ErrorMessage from './components/ErrorMessage';
-// import MovieBox from './components/MovieBox';
-// import WatchedBox from './components/WatchedBox';
+
 import MovieList from './components/MovieList';
 import WatchedSummary from './components/WatchedSummary';
-// import MovieItem from './components/MovieItem';
 import MovieInfo from './components/MovieInfo';
 import MovieDetails from './components/MovieDetails';
 import DataDisplay from './components/DataDisplay';
@@ -38,8 +34,6 @@ const tempWatchedData = [
   },
 ];
 
-// const average = (arr) => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0).toFixed(1);
-
 const KEY = '52a6b1a2';
 
 export default function App() {
@@ -50,6 +44,7 @@ export default function App() {
   const [query, setQuery] = useState('');
   const [quantity, setQuantity] = useState(0);
   const [selectedId, setSelectedId] = useState(null);
+  // const [activeList, setActiveList] = useState('watched');
 
   function handelSelectedMovie(id) {
     setSelectedId((selectedId) => (id === selectedId ? null : id));
@@ -61,7 +56,6 @@ export default function App() {
 
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
-    console.log(watched);
   }
 
   function handleDeleteWatched(id) {
@@ -125,7 +119,7 @@ export default function App() {
     <>
       <Navbar quantity={quantity} query={query} setQuery={setQuery} />
 
-      <main className="main">
+      <main className={`main ${query ? 'has-query' : 'no-query'}`}>
         <Box>
           <DataDisplay isLoading={isLoading} error={error}>
             <MovieList

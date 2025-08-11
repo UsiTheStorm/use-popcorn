@@ -111,6 +111,7 @@ export default function App() {
       }
     }
 
+    handleCloseMovie();
     // debounce
     const timer = setTimeout(fetchMovies, 500);
 

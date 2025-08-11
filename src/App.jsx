@@ -142,6 +142,7 @@ export default function App() {
               KEY={KEY}
               onAddWatched={handleAddWatched}
               watched={watched}
+              onDeleteWatched={handleDeleteWatched}
             />
           ) : (
             <>

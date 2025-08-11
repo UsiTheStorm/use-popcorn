@@ -6,7 +6,7 @@ import DataDisplay from './DataDisplay';
 
 const placeholder = '/poster-placeholder.png';
 
-function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched }) {
+function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, onDeleteWatched }) {
   const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -124,10 +124,22 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched }) 
                 <StarRating maxRating={10} size={28} onSetRating={setUserRating} />
               )}
 
-              {userRating > 0 && (
-                <button className="btn-add" onClick={handleAdd}>
-                  Add to watched
+              {isWatched ? (
+                <button
+                  className="btn-add"
+                  onClick={() => {
+                    onDeleteWatched(isWatched.imdbID);
+                    setUserRating(0);
+                  }}
+                >
+                  Delete from watched
                 </button>
+              ) : (
+                userRating > 0 && (
+                  <button className="btn-add" onClick={handleAdd}>
+                    Add to watched
+                  </button>
+                )
               )}
             </div>
 

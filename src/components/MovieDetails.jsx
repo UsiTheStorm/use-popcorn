@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import StarRating from './StarRating';
 import DataDisplay from './DataDisplay';
 
-const placeholder = '/poster-placeholder.png';
+const placeholder = './poster-placeholder.png';
 
 function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, onDeleteWatched }) {
   const [movieDetails, setMovieDetails] = useState(null);
@@ -22,7 +22,6 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, on
 
     async function getMovieDetails() {
       try {
-        // setMovieDetails({});
         setError('');
         setIsLoading(true);
 

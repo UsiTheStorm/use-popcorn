@@ -69,7 +69,6 @@ function StarRating({
     color,
     fontSize: `${size / 1.4}px`,
     width: '2ch',
-    // textAlign: 'right',
     fontFamily: 'monospace',
   };
 

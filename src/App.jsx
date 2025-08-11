@@ -122,8 +122,6 @@ export default function App() {
 
   return (
     <>
-      {/* <StarRating maxRating={7} defaultRating={3} />
-      <StarRating maxRating={10} size={24} color="red" /> */}
       <Navbar quantity={quantity} query={query} setQuery={setQuery} />
 
       <main className="main">

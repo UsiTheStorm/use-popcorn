@@ -95,12 +95,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, on
     Director: director,
   } = movieDetails;
 
-  // const roundedImdbRating = imdbRating ? Math.floor(Number(imdbRating)) : 0;
-  // console.log(roundedImdbRating);
-
   function handleAdd() {
-    // if (!movieDetails) return <DataDisplay isLoading={isLoading} error={error} />;
-
     const newWatchedMovie = {
       imdbID: selectedId,
       title,
@@ -115,8 +110,6 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, on
     onAddWatched(newWatchedMovie);
     onCloseMovie();
   }
-
-  // if (!movieDetails) return <Loader />;
 
   return (
     <div className="details">

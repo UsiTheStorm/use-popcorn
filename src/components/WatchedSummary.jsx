@@ -1,10 +1,7 @@
 import React from 'react';
 
-// const average = (arr) => arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0).toFixed(1);
-
 function getValidAvarage(arr) {
   const validNum = arr.filter((val) => typeof val === 'number' && val);
-  // console.log(validNum);
 
   return validNum.length !== 0
     ? (validNum.reduce((acc, cur) => acc + cur, 0) / validNum.length).toFixed(1)

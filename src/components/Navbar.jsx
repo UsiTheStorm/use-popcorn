@@ -20,8 +20,6 @@ function NumResults({ quantity }) {
 }
 
 function Navbar({ quantity, query, setQuery }) {
-  //   const [query, setQuery] = useState('');
-
   return (
     <nav className="nav-bar">
       <Logo />

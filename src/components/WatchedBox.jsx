@@ -31,7 +31,7 @@ function WatchedBox({ watched, average }) {
                 </p>
                 <p>
                   <span>⏳</span>
-                  <span>{movie.runtime} min</span>
+                  {movie.runtime > 0 && <span>{movie.runtime} min1</span>}
                 </p>
               </MovieItem>
             ))}

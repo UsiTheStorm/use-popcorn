@@ -18,8 +18,6 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, on
 
   useEffect(() => {
     if (userRating) countRef.current.push(userRating);
-
-    console.log(countRef.current);
   }, [userRating]);
 
   useEffect(() => {

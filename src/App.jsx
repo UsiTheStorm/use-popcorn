@@ -59,7 +59,6 @@ export default function App() {
 
   function handleAddWatched(movie) {
     setWatched((watched) => [...watched, movie]);
-    console.log(watched);
   }
 
   function handleDeleteWatched(id) {

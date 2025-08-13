@@ -17,7 +17,7 @@ function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, on
   useEffect(() => {
     if (!selectedId) return;
 
-    const controller = new AbortController(); // створюємо контролер
+    const controller = new AbortController();
     const { signal } = controller;
 
     async function getMovieDetails() {

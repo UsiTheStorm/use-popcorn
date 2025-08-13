@@ -4,6 +4,8 @@ import { useState, useEffect, useRef, use } from 'react';
 import StarRating from './StarRating';
 import DataDisplay from './DataDisplay';
 
+import { useDocumentTitle } from '../hooks/useDocumentTitle';
+
 const KEY = import.meta.env.VITE_API_KEY;
 
 const placeholder = './poster-placeholder.png';
@@ -13,6 +15,8 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [userRating, setUserRating] = useState(0);
+
+  useDocumentTitle(movieDetails?.Title);
 
   const countRef = useRef([]);
 

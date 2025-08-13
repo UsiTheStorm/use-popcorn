@@ -16,7 +16,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
   const [error, setError] = useState('');
   const [userRating, setUserRating] = useState(0);
 
-  useDocumentTitle(movieDetails?.Title);
+  useDocumentTitle(`Movie | ${movieDetails?.Title}`, 'usePopcorn');
 
   const countRef = useRef([]);
 

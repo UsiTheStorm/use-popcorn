@@ -1,13 +1,12 @@
 import { useEffect } from 'react';
 
 // Page title change
-export function useDocumentTitle(title) {
+export function useDocumentTitle(title, defaultTitle = 'usePopcorn') {
   useEffect(() => {
-    if (title) {
-      document.title = `Movie | ${title}`;
-    }
+    document.title = title || defaultTitle;
+
     return () => {
-      document.title = 'usePopcorn';
+      document.title = defaultTitle;
     };
-  }, [title]);
+  }, [title, defaultTitle]);
 }

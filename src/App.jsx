@@ -128,18 +128,24 @@ export default function App() {
 
       <main className={`main ${query ? 'has-query' : 'no-query'}`}>
         <Box>
-          <DataDisplay isLoading={isLoading} error={error} movies={movies}>
-            <MovieList
-              movies={movies}
-              onSelectMovie={handelSelectedMovie}
-              render={(movie) => (
-                <p>
-                  <span>🗓</span>
-                  <span>{movie.year}</span>
-                </p>
-              )}
-            />
-          </DataDisplay>
+          {query ? (
+            <DataDisplay isLoading={isLoading} error={error} query={query}>
+              <MovieList
+                movies={movies}
+                onSelectMovie={handelSelectedMovie}
+                render={(movie) => (
+                  <p>
+                    <span>🗓</span>
+                    <span>{movie.year}</span>
+                  </p>
+                )}
+              />
+            </DataDisplay>
+          ) : (
+            <p className="placeholder">
+              <span>🎬</span> Search for a movie
+            </p>
+          )}
         </Box>
         <Box>
           {selectedId ? (

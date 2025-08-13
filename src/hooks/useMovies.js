@@ -29,7 +29,19 @@ export function useMovies(query) {
         const data = await res.json();
         if (data.Response === 'False') throw new Error('Movie not found');
 
-        const normalizedMovies = data.Search.map((movie) => ({
+        const uniqueIds = new Set();
+
+        // filter just unique movies
+        const uniqueMovies = data.Search.filter((movie) => {
+          if (uniqueIds.has(movie.imdbID)) {
+            return false;
+          }
+          uniqueIds.add(movie.imdbID);
+          return true;
+        });
+
+        // normalize data
+        const normalizedMovies = uniqueMovies.map((movie) => ({
           imdbID: movie.imdbID,
           title: movie.Title,
           year: movie.Year,

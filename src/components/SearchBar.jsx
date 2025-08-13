@@ -5,7 +5,19 @@ function SearchBar({ query, setQuery }) {
   const inputEl = useRef(null);
 
   useEffect(() => {
-    inputEl.current.focus();
+    if (inputEl.current) {
+      inputEl.current.focus();
+    }
+
+    const handleKeyDown = (e) => {
+      if (e.code === 'Enter' && document.activeElement !== inputEl.current) {
+        inputEl.current.focus();
+        setQuery('');
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
   return (

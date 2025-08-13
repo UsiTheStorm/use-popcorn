@@ -45,6 +45,10 @@ export default function App() {
     localStorage.setItem('watched', JSON.stringify(watched));
   }, [watched]);
 
+  // Close movie details after starting a new search
+  useEffect(() => {
+    handleCloseMovie();
+  }, [query]);
 
   return (
     <>

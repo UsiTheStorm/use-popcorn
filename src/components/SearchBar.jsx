@@ -18,7 +18,7 @@ function SearchBar({ query, setQuery }) {
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [setQuery]);
 
   return (
     <input

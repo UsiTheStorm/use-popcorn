@@ -4,9 +4,11 @@ import { useState, useEffect, useRef, use } from 'react';
 import StarRating from './StarRating';
 import DataDisplay from './DataDisplay';
 
+const KEY = import.meta.env.VITE_API_KEY;
+
 const placeholder = './poster-placeholder.png';
 
-function MovieDetails({ selectedId, onCloseMovie, KEY, onAddWatched, watched, onDeleteWatched }) {
+function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDeleteWatched }) {
   const [movieDetails, setMovieDetails] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');

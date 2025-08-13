@@ -35,6 +35,7 @@ const tempWatchedData = [
 ];
 
 const KEY = '52a6b1a2';
+const KEY = import.meta.env.VITE_API_KEY;
 
 export default function App() {
   const [movies, setMovies] = useState([]);
@@ -152,7 +153,6 @@ export default function App() {
             <MovieDetails
               selectedId={selectedId}
               onCloseMovie={handleCloseMovie}
-              KEY={KEY}
               onAddWatched={handleAddWatched}
               watched={watched}
               onDeleteWatched={handleDeleteWatched}

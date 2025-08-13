@@ -62,7 +62,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
 
     getMovieDetails();
     return () => controller.abort();
-  }, [selectedId, KEY]);
+  }, [selectedId]);
 
   // Page title change
   useEffect(() => {

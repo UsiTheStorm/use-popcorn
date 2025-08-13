@@ -47,7 +47,6 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
         if (data.Response === 'False') throw new Error(data.Error || 'Movie not found');
 
         setMovieDetails(data);
-        // console.log(movieDetails);
       } catch (err) {
         if (err.name === 'AbortError') {
           console.log('Request canceled 🚦');
@@ -63,17 +62,6 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
     getMovieDetails();
     return () => controller.abort();
   }, [selectedId]);
-
-  // Page title change
-  useEffect(() => {
-    if (movieDetails?.Title) {
-      document.title = `Movie | ${movieDetails.Title}`;
-    }
-
-    return () => {
-      document.title = 'usePopcorn';
-    };
-  }, [movieDetails]);
 
   useEffect(() => {
     function handleKeyDown(e) {

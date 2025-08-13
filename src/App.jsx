@@ -128,7 +128,7 @@ export default function App() {
 
       <main className={`main ${query ? 'has-query' : 'no-query'}`}>
         <Box>
-          <DataDisplay isLoading={isLoading} error={error}>
+          <DataDisplay isLoading={isLoading} error={error} movies={movies}>
             <MovieList
               movies={movies}
               onSelectMovie={handelSelectedMovie}

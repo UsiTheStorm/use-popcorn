@@ -9,8 +9,6 @@ export function useMovies(query) {
   const [quantity, setQuantity] = useState(0);
 
   useEffect(() => {
-    // http://www.omdbapi.com/?i=tt3896198&apikey=52a6b1a2
-
     const controller = new AbortController();
     const { signal } = controller;
 

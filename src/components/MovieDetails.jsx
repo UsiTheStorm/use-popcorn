@@ -10,6 +10,7 @@ import { useKey } from '../hooks/useKey';
 const placeholder = './poster-placeholder.png';
 
 function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDeleteWatched }) {
+  const { movieDetails, isLoading, error } = useMovieData(selectedId);
   const [userRating, setUserRating] = useState(0);
 
   useDocumentTitle(`Movie | ${movieDetails?.Title}`, 'usePopcorn');
@@ -22,8 +23,6 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
   useEffect(() => {
     if (userRating) countRef.current.push(userRating);
   }, [userRating]);
-
-  const { movieDetails, isLoading, error } = useMovieData(selectedId);
 
   if (!movieDetails) {
     return <DataDisplay isLoading={isLoading} error={error} />;

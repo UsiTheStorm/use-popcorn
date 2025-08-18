@@ -1,20 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 
-// import Loader from './Loader';
 import StarRating from './StarRating';
 import DataDisplay from './DataDisplay';
 
+import { useMovieData } from '../hooks/useMovieData';
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
 import { useKey } from '../hooks/useKey';
-
-const KEY = import.meta.env.VITE_API_KEY;
 
 const placeholder = './poster-placeholder.png';
 
 function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDeleteWatched }) {
-  const [movieDetails, setMovieDetails] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState('');
   const [userRating, setUserRating] = useState(0);
 
   useDocumentTitle(`Movie | ${movieDetails?.Title}`, 'usePopcorn');
@@ -28,56 +23,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
     if (userRating) countRef.current.push(userRating);
   }, [userRating]);
 
-  useEffect(() => {
-    if (!selectedId) return;
-
-    const controller = new AbortController();
-    const { signal } = controller;
-
-    async function getMovieDetails() {
-      try {
-        setError('');
-        setIsLoading(true);
-
-        const res = await fetch(
-          `https://www.omdbapi.com/?apikey=${KEY}&i=${selectedId}&plot=full`,
-          { signal },
-        );
-        if (!res.ok) throw new Error('Fetching data problems');
-
-        const data = await res.json();
-        if (data.Response === 'False') throw new Error(data.Error || 'Movie not found');
-
-        setMovieDetails(data);
-      } catch (err) {
-        if (err.name === 'AbortError') {
-          console.log('Request canceled 🚦');
-        } else {
-          console.error(err);
-          setError(err.message);
-        }
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    getMovieDetails();
-    return () => controller.abort();
-  }, [selectedId]);
-
-  // useEffect(() => {
-  //   function handleKeyDown(e) {
-  //     if (e.key === 'Escape') {
-  //       onCloseMovie();
-  //     }
-  //   }
-
-  //   document.addEventListener('keydown', handleKeyDown);
-
-  //   return () => {
-  //     document.removeEventListener('keydown', handleKeyDown);
-  //   };
-  // }, [onCloseMovie]);
+  const { movieDetails, isLoading, error } = useMovieData(selectedId);
 
   if (!movieDetails) {
     return <DataDisplay isLoading={isLoading} error={error} />;

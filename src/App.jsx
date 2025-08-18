@@ -17,8 +17,9 @@ import { useLocalStorageState } from './hooks/useLocalStorageState';
 export default function App() {
   const [query, setQuery] = useState('');
   const [selectedId, setSelectedId] = useState(null);
+  const [page, setPage] = useState(1);
 
-  const { movies, isLoading, error, quantity } = useMovies(query, handleCloseMovie);
+  const { movies, isLoading, error, quantity } = useMovies(query, page);
   const [watched, setWatched] = useLocalStorageState([], 'watched');
 
   function handelSelectedMovie(id) {
@@ -41,6 +42,11 @@ export default function App() {
     handleCloseMovie();
   }, [query]);
 
+  // Reset of page when change search query
+  useEffect(() => {
+    setPage(1);
+  }, [query]);
+
   return (
     <>
       <Navbar quantity={quantity} query={query} setQuery={setQuery} />
@@ -52,7 +58,8 @@ export default function App() {
               <MovieList
                 movies={movies}
                 onSelectMovie={handelSelectedMovie}
-                showLoadMore={true}
+                showLoadMore={movies.length < quantity && page < 5}
+                onSetPage={setPage}
                 render={(movie) => (
                   <p>
                     <span>🗓</span>

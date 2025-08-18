@@ -1,6 +1,6 @@
 import MovieItem from './MovieItem';
 
-function MovieList({ movies, onSelectMovie, onDeleteWatched, render, showLoadMore }) {
+function MovieList({ movies, onSelectMovie, onDeleteWatched, render, showLoadMore, onSetPage }) {
   return (
     <>
       <ul className="list list-movies">
@@ -15,7 +15,11 @@ function MovieList({ movies, onSelectMovie, onDeleteWatched, render, showLoadMor
           </MovieItem>
         ))}
       </ul>
-      {showLoadMore && <button className="btn-load-more">Load More</button>}
+      {showLoadMore && (
+        <button className="btn-load-more" onClick={() => onSetPage((prevPage) => prevPage + 1)}>
+          Load More
+        </button>
+      )}
     </>
   );
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 const KEY = import.meta.env.VITE_API_KEY;
 
-export function useMovies(query) {
+export function useMovies(query, page) {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
@@ -22,7 +22,9 @@ export function useMovies(query) {
       try {
         setIsLoading(true);
         setError('');
-        const res = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}`, { signal });
+        const res = await fetch(`https://www.omdbapi.com/?apikey=${KEY}&s=${query}&page=${page}`, {
+          signal,
+        });
 
         if (!res.ok) throw new Error('Fetching data problems');
 
@@ -48,7 +50,9 @@ export function useMovies(query) {
           poster: movie.Poster,
         }));
 
-        setMovies(normalizedMovies);
+        // setMovies(normalizedMovies);
+        setMovies((prevMovies) => [...prevMovies, ...normalizedMovies]);
+
         setQuantity(data.totalResults);
         setError('');
       } catch (err) {
@@ -68,7 +72,7 @@ export function useMovies(query) {
       controller.abort();
       clearTimeout(timer);
     };
-  }, [query]);
+  }, [query, page]);
 
   return { movies, isLoading, error, quantity };
 }

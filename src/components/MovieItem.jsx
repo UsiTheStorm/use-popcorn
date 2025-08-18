@@ -1,5 +1,3 @@
-import React from 'react';
-
 const placeholder = './poster-placeholder.png';
 
 function MovieItem({ movie: { imdbID, title, poster }, children, onSelectMovie, onDeleteWatched }) {

@@ -50,7 +50,6 @@ export function useMovies(query, page) {
           poster: movie.Poster,
         }));
 
-        // setMovies(normalizedMovies);
         setMovies((prevMovies) => [...prevMovies, ...normalizedMovies]);
 
         setQuantity(data.totalResults);

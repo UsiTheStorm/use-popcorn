@@ -52,6 +52,7 @@ export default function App() {
               <MovieList
                 movies={movies}
                 onSelectMovie={handelSelectedMovie}
+                showLoadMore={true}
                 render={(movie) => (
                   <p>
                     <span>🗓</span>

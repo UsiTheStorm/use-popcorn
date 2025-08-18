@@ -5,6 +5,7 @@ import StarRating from './StarRating';
 import DataDisplay from './DataDisplay';
 
 import { useDocumentTitle } from '../hooks/useDocumentTitle';
+import { useKey } from '../hooks/useKey';
 
 const KEY = import.meta.env.VITE_API_KEY;
 
@@ -17,6 +18,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
   const [userRating, setUserRating] = useState(0);
 
   useDocumentTitle(`Movie | ${movieDetails?.Title}`, 'usePopcorn');
+  useKey(onCloseMovie);
 
   const countRef = useRef([]);
 
@@ -63,19 +65,19 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
     return () => controller.abort();
   }, [selectedId]);
 
-  useEffect(() => {
-    function handleKeyDown(e) {
-      if (e.key === 'Escape') {
-        onCloseMovie();
-      }
-    }
+  // useEffect(() => {
+  //   function handleKeyDown(e) {
+  //     if (e.key === 'Escape') {
+  //       onCloseMovie();
+  //     }
+  //   }
 
-    document.addEventListener('keydown', handleKeyDown);
+  //   document.addEventListener('keydown', handleKeyDown);
 
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, [onCloseMovie]);
+  //   return () => {
+  //     document.removeEventListener('keydown', handleKeyDown);
+  //   };
+  // }, [onCloseMovie]);
 
   if (!movieDetails) {
     return <DataDisplay isLoading={isLoading} error={error} />;

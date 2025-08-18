@@ -18,7 +18,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
   const [userRating, setUserRating] = useState(0);
 
   useDocumentTitle(`Movie | ${movieDetails?.Title}`, 'usePopcorn');
-  useKey(onCloseMovie);
+  useKey('Escape', onCloseMovie);
 
   const countRef = useRef([]);
 

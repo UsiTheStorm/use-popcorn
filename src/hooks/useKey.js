@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-export function useKey(onCloseMovie) {
+export function useKey(key, action) {
   useEffect(() => {
     function handleKeyDown(e) {
-      if (e.key === 'Escape') {
-        onCloseMovie();
+      if (e.code.toLowerCase() === key.toLowerCase()) {
+        action();
       }
     }
 
@@ -13,5 +13,5 @@ export function useKey(onCloseMovie) {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [onCloseMovie]);
+  }, [action, key]);
 }

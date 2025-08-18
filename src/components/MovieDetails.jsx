@@ -39,6 +39,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
     imdbRating,
     Actors: actors,
     Director: director,
+    Country: country,
   } = movieDetails;
 
   function handleAdd() {
@@ -76,6 +77,7 @@ function MovieDetails({ selectedId, onCloseMovie, onAddWatched, watched, onDelet
               <p>
                 {released} &bull; {runtime}
               </p>
+              <p>Country of origin: {country}</p>
               <p>{genre}</p>
               <p>
                 <span>⭐️</span>

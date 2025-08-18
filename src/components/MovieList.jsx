@@ -1,5 +1,3 @@
-import React from 'react';
-
 import MovieItem from './MovieItem';
 
 function MovieList({ movies, onSelectMovie, onDeleteWatched, render }) {

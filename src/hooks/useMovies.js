@@ -61,8 +61,6 @@ export function useMovies(query) {
       }
     }
 
-    // handleCloseMovie();
-
     // debounce
     const timer = setTimeout(fetchMovies, 500);
 

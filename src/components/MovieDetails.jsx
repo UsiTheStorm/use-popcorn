@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, use } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 // import Loader from './Loader';
 import StarRating from './StarRating';

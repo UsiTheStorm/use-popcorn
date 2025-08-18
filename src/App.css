@@ -69,6 +69,24 @@ body {
 
   display: flex;
   flex-direction: column;
+
+  overflow-y: auto;
+  height: 120vh;
+}
+
+.box::-webkit-scrollbar {
+  width: 5px;
+}
+
+.box::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 10px;
+  border: 2px solid #222;
+}
+
+.box::-webkit-scrollbar-track {
+  background: #222;
+  border-radius: 10px;
 }
 
 .loader {

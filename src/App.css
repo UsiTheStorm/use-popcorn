@@ -435,6 +435,10 @@ FONT SIZE SYSTEM (px)
     width: 100%;
   }
 
+  .main.no-query .box:first-child {
+    display: none;
+  }
+
   .main:has(.box .details) > .box:first-child {
     display: none;
   }

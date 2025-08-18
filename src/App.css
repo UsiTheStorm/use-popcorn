@@ -65,6 +65,7 @@ body {
   background-color: var(--color-background-500);
   border-radius: 0.9rem;
   position: relative;
+  padding-bottom: 2rem;
 
   display: flex;
   flex-direction: column;
@@ -282,6 +283,7 @@ body {
 }
 
 .details img {
+  object-fit: contain;
   width: 33%;
 }
 
@@ -318,20 +320,23 @@ body {
   gap: 2.4rem;
 }
 
-.btn-add {
+.btn-add,
+.btn-load-more {
   background-color: var(--color-primary);
   color: var(--color-text);
   border: none;
   border-radius: 10rem;
   font-size: 1.4rem;
   padding: 1rem 4rem;
+  align-self: center;
 
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s;
 }
 
-.btn-add:hover {
+.btn-add:hover,
+.btn-load-more:hover {
   background-color: var(--color-primary-light);
 }
 
@@ -498,7 +503,8 @@ FONT SIZE SYSTEM (px)
     font-size: 1.2rem;
   }
 
-  .btn-add {
+  .btn-add,
+  .btn-load-more {
     padding: 1.6rem 5rem;
     font-size: 2rem;
   }

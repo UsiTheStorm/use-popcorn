@@ -37,13 +37,9 @@ export default function App() {
   function handleDeleteWatched(id) {
     setWatched((watched) => watched.filter((movie) => movie.imdbID !== id));
   }
-
+  // Reset page and close movie details when change search query
   useEffect(() => {
     handleCloseMovie();
-  }, [query]);
-
-  // Reset of page when change search query
-  useEffect(() => {
     setPage(1);
   }, [query]);
 

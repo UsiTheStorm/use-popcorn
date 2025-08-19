@@ -70,8 +70,8 @@ body {
   display: flex;
   flex-direction: column;
 
-  overflow-y: auto;
-  max-height: 100vh;
+  /* overflow-y: auto;
+  max-height: 100vh; */
 }
 
 .box::-webkit-scrollbar {
